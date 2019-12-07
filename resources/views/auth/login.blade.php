@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+        <div class="col-md-4">
+            <!-- <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
@@ -66,21 +66,30 @@
                         </div>
                     </form>
                 </div>
-            </div>
-             <!-- <div class="card mt-4">
-                <div class="view view-cascade gradient-card-header blue-gradient narrower py-4 mx-4 d-flex z-depth-3 justify-content-between align-items-center rounded"
+            </div> -->
+            <div class="card mt-4">
+                <div class="view view-cascade gradient-card-header blue-gradient narrower py-4 mx-4 d-flex z-depth-3 justify-content-between align-items-center rounded text-center"
                     style="margin-top:-25px;">
-                    <a href="#" class="white-text mx-3 text-center">Login</a>
+                    <h2 class="text-center"><a href="#" class="white-text mx-3 text-center">Login</a></h2>
                 </div>
                
-                <form class="text-center border border-light p-5" action="#!">
+                <form class="text-center border border-light p-5" method="POST" action="{{ route('login') }}">
+                  @csrf
+                    <input id="email" type="email" class="form-control mb-4  @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="E-mail">
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                   
-                    <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+                    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4  @error('password') is-invalid @enderror"
+                        placeholder="Password" name="password" required autocomplete="current-password">
 
-                  
-                    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4"
-                        placeholder="Password">
-
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <div class="d-flex justify-content-around">
                         <div>
                          
@@ -103,12 +112,10 @@
                         <a href="">Register</a>
                     </p>
 
-                   
-                    <p>or sign in with:</p>
 
                 </form>
               
-            </div> -->
+            </div>
 
         </div>
     </div>
